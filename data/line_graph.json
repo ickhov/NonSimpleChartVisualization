@@ -1,0 +1,372 @@
+{
+"Bayview": [
+{"year" : "2010", "value": 0},
+{"year" : "2011", "value": 117},
+{"year" : "2012", "value": 2},
+{"year" : "2013", "value": 207},
+{"year" : "2014", "value": 532},
+{"year" : "2015", "value": 362},
+{"year" : "2016", "value": 331},
+{"year" : "2017", "value": 591}
+],
+"Bernal_Heights": [
+{"year" : "2010", "value": 1},
+{"year" : "2011", "value": 375},
+{"year" : "2012", "value": 29},
+{"year" : "2013", "value": 525},
+{"year" : "2014", "value": 179},
+{"year" : "2015", "value": 590},
+{"year" : "2016", "value": 688},
+{"year" : "2017", "value": 204}
+],
+"Castro_Upper_Market": [
+{"year" : "2010", "value": 2},
+{"year" : "2011", "value": 48},
+{"year" : "2012", "value": 600},
+{"year" : "2013", "value": 469},
+{"year" : "2014", "value": 644},
+{"year" : "2015", "value": 501},
+{"year" : "2016", "value": 505},
+{"year" : "2017", "value": 389}
+],
+"Chinatown": [
+{"year" : "2010", "value": 3},
+{"year" : "2011", "value": 137},
+{"year" : "2012", "value": 442},
+{"year" : "2013", "value": 488},
+{"year" : "2014", "value": 629},
+{"year" : "2015", "value": 245},
+{"year" : "2016", "value": 578},
+{"year" : "2017", "value": 626}
+],
+"Crocker_Amazon": [
+{"year" : "2010", "value": 4},
+{"year" : "2011", "value": 633},
+{"year" : "2012", "value": 525},
+{"year" : "2013", "value": 604},
+{"year" : "2014", "value": 440},
+{"year" : "2015", "value": 335},
+{"year" : "2016", "value": 306},
+{"year" : "2017", "value": 93}
+],
+"Diamond_Heights": [
+{"year" : "2010", "value": 5},
+{"year" : "2011", "value": 405},
+{"year" : "2012", "value": 594},
+{"year" : "2013", "value": 141},
+{"year" : "2014", "value": 675},
+{"year" : "2015", "value": 289},
+{"year" : "2016", "value": 369},
+{"year" : "2017", "value": 431}
+],
+"Downtown_Civic_Center": [
+{"year" : "2010", "value": 6},
+{"year" : "2011", "value": 548},
+{"year" : "2012", "value": 181},
+{"year" : "2013", "value": 360},
+{"year" : "2014", "value": 351},
+{"year" : "2015", "value": 307},
+{"year" : "2016", "value": 353},
+{"year" : "2017", "value": 469}
+],
+"Excelsior": [
+{"year" : "2010", "value": 7},
+{"year" : "2011", "value": 270},
+{"year" : "2012", "value": 588},
+{"year" : "2013", "value": 575},
+{"year" : "2014", "value": 216},
+{"year" : "2015", "value": 542},
+{"year" : "2016", "value": 449},
+{"year" : "2017", "value": 211}
+],
+"Financial_District": [
+{"year" : "2010", "value": 8},
+{"year" : "2011", "value": 550},
+{"year" : "2012", "value": 339},
+{"year" : "2013", "value": 9},
+{"year" : "2014", "value": 429},
+{"year" : "2015", "value": 486},
+{"year" : "2016", "value": 232},
+{"year" : "2017", "value": 404}
+],
+"Glen_Park": [
+{"year" : "2010", "value": 9},
+{"year" : "2011", "value": 29},
+{"year" : "2012", "value": 637},
+{"year" : "2013", "value": 142},
+{"year" : "2014", "value": 159},
+{"year" : "2015", "value": 219},
+{"year" : "2016", "value": 663},
+{"year" : "2017", "value": 155}
+],
+"Golden_Gate_Park": [
+{"year" : "2010", "value": 10},
+{"year" : "2011", "value": 196},
+{"year" : "2012", "value": 12},
+{"year" : "2013", "value": 487},
+{"year" : "2014", "value": 422},
+{"year" : "2015", "value": 426},
+{"year" : "2016", "value": 305},
+{"year" : "2017", "value": 651}
+],
+"Haight_Ashbury": [
+{"year" : "2010", "value": 11},
+{"year" : "2011", "value": 236},
+{"year" : "2012", "value": 628},
+{"year" : "2013", "value": 424},
+{"year" : "2014", "value": 342},
+{"year" : "2015", "value": 60},
+{"year" : "2016", "value": 426},
+{"year" : "2017", "value": 239}
+],
+"Inner_Richmond": [
+{"year" : "2010", "value": 12},
+{"year" : "2011", "value": 55},
+{"year" : "2012", "value": 525},
+{"year" : "2013", "value": 610},
+{"year" : "2014", "value": 265},
+{"year" : "2015", "value": 85},
+{"year" : "2016", "value": 415},
+{"year" : "2017", "value": 319}
+],
+"Inner_Sunset": [
+{"year" : "2010", "value": 13},
+{"year" : "2011", "value": 252},
+{"year" : "2012", "value": 129},
+{"year" : "2013", "value": 324},
+{"year" : "2014", "value": 66},
+{"year" : "2015", "value": 622},
+{"year" : "2016", "value": 28},
+{"year" : "2017", "value": 250}
+],
+"Lakeshore": [
+{"year" : "2010", "value": 14},
+{"year" : "2011", "value": 632},
+{"year" : "2012", "value": 611},
+{"year" : "2013", "value": 32},
+{"year" : "2014", "value": 408},
+{"year" : "2015", "value": 283},
+{"year" : "2016", "value": 481},
+{"year" : "2017", "value": 589}
+],
+"Marina": [
+{"year" : "2010", "value": 15},
+{"year" : "2011", "value": 328},
+{"year" : "2012", "value": 348},
+{"year" : "2013", "value": 609},
+{"year" : "2014", "value": 21},
+{"year" : "2015", "value": 622},
+{"year" : "2016", "value": 498},
+{"year" : "2017", "value": 125}
+],
+"Mission": [
+{"year" : "2010", "value": 16},
+{"year" : "2011", "value": 568},
+{"year" : "2012", "value": 42},
+{"year" : "2013", "value": 644},
+{"year" : "2014", "value": 498},
+{"year" : "2015", "value": 437},
+{"year" : "2016", "value": 50},
+{"year" : "2017", "value": 420}
+],
+"Nob_Hill": [
+{"year" : "2010", "value": 17},
+{"year" : "2011", "value": 592},
+{"year" : "2012", "value": 110},
+{"year" : "2013", "value": 235},
+{"year" : "2014", "value": 32},
+{"year" : "2015", "value": 41},
+{"year" : "2016", "value": 582},
+{"year" : "2017", "value": 582}
+],
+"Noe_Valley": [
+{"year" : "2010", "value": 18},
+{"year" : "2011", "value": 609},
+{"year" : "2012", "value": 523},
+{"year" : "2013", "value": 401},
+{"year" : "2014", "value": 555},
+{"year" : "2015", "value": 288},
+{"year" : "2016", "value": 217},
+{"year" : "2017", "value": 143}
+],
+"North_Beach": [
+{"year" : "2010", "value": 19},
+{"year" : "2011", "value": 325},
+{"year" : "2012", "value": 484},
+{"year" : "2013", "value": 590},
+{"year" : "2014", "value": 481},
+{"year" : "2015", "value": 581},
+{"year" : "2016", "value": 156},
+{"year" : "2017", "value": 438}
+],
+"Ocean_View": [
+{"year" : "2010", "value": 20},
+{"year" : "2011", "value": 151},
+{"year" : "2012", "value": 102},
+{"year" : "2013", "value": 42},
+{"year" : "2014", "value": 483},
+{"year" : "2015", "value": 362},
+{"year" : "2016", "value": 156},
+{"year" : "2017", "value": 191}
+],
+"Outer_Mission": [
+{"year" : "2010", "value": 21},
+{"year" : "2011", "value": 419},
+{"year" : "2012", "value": 340},
+{"year" : "2013", "value": 655},
+{"year" : "2014", "value": 415},
+{"year" : "2015", "value": 177},
+{"year" : "2016", "value": 68},
+{"year" : "2017", "value": 119}
+],
+"Outer_Richmond": [
+{"year" : "2010", "value": 22},
+{"year" : "2011", "value": 525},
+{"year" : "2012", "value": 165},
+{"year" : "2013", "value": 132},
+{"year" : "2014", "value": 126},
+{"year" : "2015", "value": 615},
+{"year" : "2016", "value": 389},
+{"year" : "2017", "value": 458}
+],
+"Outer_Sunset": [
+{"year" : "2010", "value": 23},
+{"year" : "2011", "value": 393},
+{"year" : "2012", "value": 393},
+{"year" : "2013", "value": 228},
+{"year" : "2014", "value": 171},
+{"year" : "2015", "value": 91},
+{"year" : "2016", "value": 553},
+{"year" : "2017", "value": 560}
+],
+"Pacific_Heights": [
+{"year" : "2010", "value": 24},
+{"year" : "2011", "value": 652},
+{"year" : "2012", "value": 223},
+{"year" : "2013", "value": 273},
+{"year" : "2014", "value": 178},
+{"year" : "2015", "value": 421},
+{"year" : "2016", "value": 345},
+{"year" : "2017", "value": 569}
+],
+"Parkside": [
+{"year" : "2010", "value": 25},
+{"year" : "2011", "value": 280},
+{"year" : "2012", "value": 352},
+{"year" : "2013", "value": 200},
+{"year" : "2014", "value": 110},
+{"year" : "2015", "value": 666},
+{"year" : "2016", "value": 123},
+{"year" : "2017", "value": 642}
+],
+"Potrero_Hill": [
+{"year" : "2010", "value": 26},
+{"year" : "2011", "value": 563},
+{"year" : "2012", "value": 5},
+{"year" : "2013", "value": 339},
+{"year" : "2014", "value": 165},
+{"year" : "2015", "value": 463},
+{"year" : "2016", "value": 589},
+{"year" : "2017", "value": 3}
+],
+"Presidio": [
+{"year" : "2010", "value": 27},
+{"year" : "2011", "value": 263},
+{"year" : "2012", "value": 302},
+{"year" : "2013", "value": 256},
+{"year" : "2014", "value": 553},
+{"year" : "2015", "value": 603},
+{"year" : "2016", "value": 229},
+{"year" : "2017", "value": 308}
+],
+"Presidio_Heights": [
+{"year" : "2010", "value": 28},
+{"year" : "2011", "value": 311},
+{"year" : "2012", "value": 223},
+{"year" : "2013", "value": 662},
+{"year" : "2014", "value": 539},
+{"year" : "2015", "value": 305},
+{"year" : "2016", "value": 58},
+{"year" : "2017", "value": 58}
+],
+"Russian_Hill": [
+{"year" : "2010", "value": 29},
+{"year" : "2011", "value": 87},
+{"year" : "2012", "value": 242},
+{"year" : "2013", "value": 302},
+{"year" : "2014", "value": 301},
+{"year" : "2015", "value": 38},
+{"year" : "2016", "value": 88},
+{"year" : "2017", "value": 220}
+],
+"Seacliff": [
+{"year" : "2010", "value": 30},
+{"year" : "2011", "value": 416},
+{"year" : "2012", "value": 182},
+{"year" : "2013", "value": 167},
+{"year" : "2014", "value": 544},
+{"year" : "2015", "value": 147},
+{"year" : "2016", "value": 567},
+{"year" : "2017", "value": 220}
+],
+"South_of_Market": [
+{"year" : "2010", "value": 31},
+{"year" : "2011", "value": 486},
+{"year" : "2012", "value": 321},
+{"year" : "2013", "value": 477},
+{"year" : "2014", "value": 545},
+{"year" : "2015", "value": 656},
+{"year" : "2016", "value": 34},
+{"year" : "2017", "value": 177}
+],
+"Treasure_Island_YBI": [
+{"year" : "2010", "value": 32},
+{"year" : "2011", "value": 575},
+{"year" : "2012", "value": 586},
+{"year" : "2013", "value": 673},
+{"year" : "2014", "value": 453},
+{"year" : "2015", "value": 494},
+{"year" : "2016", "value": 387},
+{"year" : "2017", "value": 642}
+],
+"Twin_Peaks": [
+{"year" : "2010", "value": 33},
+{"year" : "2011", "value": 158},
+{"year" : "2012", "value": 589},
+{"year" : "2013", "value": 47},
+{"year" : "2014", "value": 616},
+{"year" : "2015", "value": 190},
+{"year" : "2016", "value": 342},
+{"year" : "2017", "value": 662}
+],
+"Visitacion_Valley": [
+{"year" : "2010", "value": 34},
+{"year" : "2011", "value": 186},
+{"year" : "2012", "value": 300},
+{"year" : "2013", "value": 644},
+{"year" : "2014", "value": 121},
+{"year" : "2015", "value": 205},
+{"year" : "2016", "value": 241},
+{"year" : "2017", "value": 226}
+],
+"West_of_Twin_Peaks": [
+{"year" : "2010", "value": 35},
+{"year" : "2011", "value": 366},
+{"year" : "2012", "value": 325},
+{"year" : "2013", "value": 47},
+{"year" : "2014", "value": 449},
+{"year" : "2015", "value": 487},
+{"year" : "2016", "value": 118},
+{"year" : "2017", "value": 588}
+],
+"Western_Addition": [
+{"year" : "2010", "value": 36},
+{"year" : "2011", "value": 26},
+{"year" : "2012", "value": 429},
+{"year" : "2013", "value": 29},
+{"year" : "2014", "value": 214},
+{"year" : "2015", "value": 163},
+{"year" : "2016", "value": 212},
+{"year" : "2017", "value": 448}
+]
+}
