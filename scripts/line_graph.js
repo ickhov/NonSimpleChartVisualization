@@ -89,17 +89,15 @@ var drawLineGraph = function(field) {
       svg.select(".name").remove();
   }
 
-  removeLabel();
-
   // Add the valueline path.
   svg.append("path")
     .data([data])
     .attr("class", "line2")
     .attr("d", valueline)
-    .attr("transform", "translate(42" + ", 70" + ")")
-    .on("mouseleave", removeLabel);
+    .attr("transform", "translate(42" + ", 70" + ")");
   
-  svg.on("mouseover", showLabel);
+  svg.on("mouseover", showLabel)
+    .on("mouseleave", removeLabel);
 
   // Add the X Axis
   var marginB = 460;
