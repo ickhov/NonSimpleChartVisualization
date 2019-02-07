@@ -9,15 +9,31 @@ svg {
   float: left;
 }
 
+text {
+  font-size: 130%;
+}
+
+#myTooltip {
+  padding: 1%;
+  font-size: 80%;
+  position: absolute;
+  background-color: black;
+  color: white;
+  white-space: pre;
+  text-align: left;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.xaxislabel, .label {
+  font-size: 100%;
+}
+
+/*
 #chart{
   position: relative;
   top: 8%;
   padding-top: 5px;
-}
-
-circle.airbnb {
-  /* fill: #e00007; */
-  opacity: 0.6;
 }
 
 .axis {
@@ -39,7 +55,6 @@ text {
 }
 
 path {
-  /* fill: none; */
   stroke: black;
   stroke-width: 2px;
 }
@@ -51,7 +66,6 @@ path {
 circle {
   opacity: 0.9;
   stroke: none;
-  /* fill: red; */
 }
 
 .line {
@@ -65,19 +79,4 @@ circle {
   stroke: #e00007;;
   stroke-width: 2px;
 }
-
-#myTooltip {
-  padding: 1%;
-  font-size: 15px;
-  position: absolute;
-  background-color: black;
-  color: white;
-  white-space: pre;
-  text-align: center;
-}
-
-/* .line2 {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-} */
+*/
