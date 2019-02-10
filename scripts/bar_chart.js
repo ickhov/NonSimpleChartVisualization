@@ -44,34 +44,48 @@ function BarChart(svg, regionName, data) {
     // color scale
     var color = d3.scaleQuantize().range(d3.schemeGreens[9]);
 
+    // key for country
     var key = function(d) { return d.Country; }
 
+    // variable to keep track whether to set redraw to true or false
     var previousRegion = undefined;
 
     this.draw = function(region, newData) {
 
+        // variable to know when to redraw
         var reDraw = true;
 
+        // check if the country is the same country
+        // if so, don't redraw
         if (previousRegion != undefined)
         {
             if (previousRegion == region)
                 reDraw = false;
         }
 
+        // draw the entire bar chart if redraw is true
         if (reDraw) {
+
+            // keep track of current drawn country
             previousRegion = region;
 
+            // filter data to only have current country selected
             newData = newData.filter(function(d) {
                 return d.Region == region;
             })
     
+            // sort the data to make bar chart look cleaner
             newData = newData.sort(function (a, b) {
                 return d3.ascending(a["GDP ($ per capita)"], b["GDP ($ per capita)"]);
             })
     
+            // show the top 10 data due to space limit on bar chart
             newData.splice(10);
+
+            // remove any data with GDP = 0
             newData = newData.filter(function(d) {return d["GDP ($ per capita)"] > 0;});
     
+            // x and y domain for bar chart
             x.domain([0, d3.max(newData, function(d) { return d["GDP ($ per capita)"]; })]);
             y.domain(newData.map(function(d) {return d.Country;})).padding(0.1);
     
@@ -97,12 +111,14 @@ function BarChart(svg, regionName, data) {
             // color scale
             color.domain([0, d3.max(newData, function(d) { return d["GDP ($ per capita)"]; })]);
     
+            // remove label before appending new once
             this.svg.selectAll(".label").remove();
             
             // group the bar
             var items = this.svg.selectAll(".bar")
                 .data(newData, key)
                 
+            // new enter() data
             var bars = items.enter()
                 .append("g");
             
@@ -119,6 +135,7 @@ function BarChart(svg, regionName, data) {
                 .attr("stroke-width", "1px")
                 .attr("fill", function(d) { return color(d["GDP ($ per capita)"]);});
     
+            // variable to know when to change text color from black to white
             var nearEnd = color.domain()[1] / 1.5;
     
             // append the text
@@ -140,6 +157,7 @@ function BarChart(svg, regionName, data) {
                     return d.Country + ": $" + d3.format(",.0f")(d["GDP ($ per capita)"]);
                 });
     
+            // remove old data
             items.exit().remove();
         }
     }
