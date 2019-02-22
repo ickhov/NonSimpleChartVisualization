@@ -19,7 +19,7 @@ function drawNetworkGraph(astronautName, data) {
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.name; }))
-        .force("charge", d3.forceManyBody())
+        .force("charge", d3.forceManyBody().strength(-9))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     var findIndexOfNode = function(name) {
@@ -32,7 +32,7 @@ function drawNetworkGraph(astronautName, data) {
         // group 0 = name; group 1 = mission
         // add in the node; no duplicates allowed so use dictionary
         if (astronautName[d.Name] != undefined) {
-            nodes_[nodeIndex] = {"name": d.Name, "group": 0};
+            nodes_[nodeIndex] = {"name": d.Name, "group": 0, "spacewalks": d.SpaceWalks, "spacewalkshr": d.SpaceWalksHR};
             nodeIndex++;
 
             // get the links (missions); duplicate allowed so use array with index
@@ -51,6 +51,32 @@ function drawNetworkGraph(astronautName, data) {
             }
         }
     });
+
+    // define the tooltip behavior
+    var tooltip = d3.select('#myTooltip');
+
+    // show tooltip function
+    var showTooltip = function(d) {
+        tooltip.style('display', 'block');
+
+        // set the initial position of the tooltip
+        tooltip.style('left', d3.event.pageX + 'px');
+        tooltip.style('top', d3.event.pageY + 'px');
+
+        if (d.group == 0)
+        {
+            tooltip.html("<strong>" + d.name +
+            "</strong><br /># of Space Walks: " + d.spacewalks +
+            "<br />Hours of Space Walks: " + d.spacewalkshr);
+        } else {
+            tooltip.html("<strong>Mission:</strong> " + d.name);
+        }
+    }
+
+    // hide tooltip function
+    var hideTooltip = function(d) {
+        tooltip.style('display', 'none');
+    }
     
     var link = svg.append("g")
         .attr("class", "graphLink")
@@ -105,6 +131,8 @@ function drawNetworkGraph(astronautName, data) {
         node.append("circle")
             .attr("r", 5)
             .attr("fill", function(d) { return color(d.group); })
+            .on("mouseover", showTooltip)
+            .on("mouseleave", hideTooltip)
             .call(d3.drag()
                 .on("start", dragStarted)
                 .on("drag", dragged)
@@ -118,7 +146,8 @@ function drawNetworkGraph(astronautName, data) {
                 return "";
             })
             .attr('x', 6)
-            .attr('y', 3);
+            .attr('y', 3)
+            .attr("pointer-events", "none");
 
         node = node.merge(node);
       

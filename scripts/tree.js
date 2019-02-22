@@ -1,5 +1,4 @@
 
-var selectedNames = {};
 
 function TreeMap(stateName, info) {
 
@@ -34,7 +33,7 @@ function TreeMap(stateName, info) {
     var width = boundingBox.width - 15;
     
     var newTree = treeBox.insert("svg", ".tree")
-        .attr("width", width + "px")
+        .attr("width", 1100 + "px")
         .attr("height", height + "px")
         .attr("class", "tree")
         .attr("id", stateName);
@@ -95,9 +94,10 @@ function TreeMap(stateName, info) {
 
     update(root);
 
-    // Collapse the node and all it"s children
+    // Collapse the node and all it's children
     function collapse(d) {
         if(d.children) {
+            removeSelectedNames(d.data.name);
             d.tempChildren = d.children
             d.tempChildren.forEach(collapse)
             d.children = null
@@ -147,19 +147,14 @@ function TreeMap(stateName, info) {
             if (d.children) {
                 d.tempChildren = d.children;
                 d.children = null;
-                console.log("hidden " + d.data.name);
-                selectedNames[d.data.name] = undefined;
-                drawNetworkGraph(selectedNames, data);
+                removeSelectedNames(d.data.name);
             } 
             // children is null = chidren is hidden
             // unhide them
             else {
                 d.children = d.tempChildren;
                 d.tempChildren = null;
-                console.log("visible " + d.data.name);
-                selectedNames[d.data.name] = d.data.name;
-                drawNetworkGraph(selectedNames, data);
-                //networkGraph[d.data.name] = new NetworkGraph(d.data.name, info);
+                addSelectedNames(d.data.name);
             }
             update(d);
         }

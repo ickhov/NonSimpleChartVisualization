@@ -1,4 +1,5 @@
 var treeMap = {};
+var selectedNames = {};
 var networkGraph;
 var svg = d3.select("#map");
 
@@ -73,6 +74,8 @@ var stateCode = {
 var url1 = "./data/us_states.geojson";
 var url2 = "./data/astronauts.csv";
 
+var astronautsData;
+
 var q = d3_queue.queue(1)
   .defer(d3.json, url1)
   .defer(d3.csv, url2)
@@ -83,7 +86,7 @@ function draw(error, data) {
     // important: First argument it expects is error
     if (error) throw error;
 
-    var astronautsData = data[1];
+    astronautsData = data[1];
     var stateCount = {};
 
     astronautsData.forEach(function(d) {
@@ -106,7 +109,7 @@ function draw(error, data) {
 
     // title for the bubble chart
     svg.append("text")
-        .attr("x", width / 4.3)
+        .attr("x", width / 4.4)
         .attr("y", height / 15)
         .attr("font-size", "20px")
         .attr("fill", "black")
@@ -246,6 +249,8 @@ function draw(error, data) {
         stateSelected["CA"] = "California";
         size++;
         updateTree("add", "CA");
+
+        drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, astronautsData);
     }
 
     var g = svg.append("g")
@@ -265,6 +270,7 @@ function draw(error, data) {
         .attr("fill", "white")
         .attr("cursor", "pointer");
 
+    /*********************** Dendrogram *************************/
     var treeBox = d3.select("#treeBox");
 
     treeBox.append("p")
@@ -281,9 +287,8 @@ function draw(error, data) {
 
     // update the tree to match current selection
     var updateTree = function(operation, state) {
-        
         if (operation == "add") {
-            treeMap[state] = new TreeMap(state, data[1]);
+            treeMap[state] = new TreeMap(state, astronautsData);
         } else if (operation == "remove") {
             treeMap[state] = null;
             clearStateFromTree(state);
@@ -296,5 +301,26 @@ function draw(error, data) {
     size++;
     updateTree("add", "CA");
 
-    drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, data[1]);
+    /*********************** Network Graph *************************/
+    drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, astronautsData);
+
+    var graph = d3.select("#network");
+    // title for the bubble chart
+    graph.append("text")
+        .attr("x", width / 8.2)
+        .attr("y", height / 15)
+        .attr("font-size", "20px")
+        .attr("fill", "black")
+        .attr("font-weight", "bold")
+        .text("U.S. Astronauts' Space Missions and Space Walks");
+}
+
+function addSelectedNames(name) {
+    selectedNames[name] = name;
+    drawNetworkGraph(selectedNames, astronautsData);
+}
+
+function removeSelectedNames(name) {
+    selectedNames[name] = undefined;
+    drawNetworkGraph(selectedNames, astronautsData);
 }
