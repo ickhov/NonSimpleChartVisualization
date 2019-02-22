@@ -156,7 +156,7 @@ function draw(error, data) {
     // color scale for the legend
     var color = d3.scaleThreshold()
         .domain([0, 1, 1.5, 5, 10, 15, 20, 25, 30])
-        .range(d3.schemePurples[9]);
+        .range(d3.schemeGreens[9]);
 
     // create and append the map of the US
     var map = svg.selectAll('path')
