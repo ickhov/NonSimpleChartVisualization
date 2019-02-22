@@ -29,7 +29,7 @@ function TreeMap(stateName, data) {
     //  grab the width and height of our containing SVG
     var width = boundingBox.width - 15;
     
-    var newTree = treeBox.append("svg")
+    var newTree = treeBox.insert("svg", ".tree")
         .attr("width", width + "px")
         .attr("height", height + "px")
         .attr("class", "tree")
