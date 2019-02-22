@@ -105,10 +105,10 @@ function draw(error, data) {
 
     // title for the bubble chart
     svg.append("text")
-        .attr("x", width / 4)
+        .attr("x", width / 3.5)
         .attr("y", height / 15)
-        .attr("font-size", "24px")
-        .attr("fill", "white")
+        .attr("font-size", "20px")
+        .attr("fill", "black")
         .attr("font-weight", "bold")
         .text("Number of U.S. Astronauts per State");
 
@@ -120,51 +120,43 @@ function draw(error, data) {
         var index = stateCode[d.properties.name];
         // stateSelected is empty && the current clicked state is not highlighted
         // first state clicked so make all labels and map opaque out
+        if (stateCount[index] == 0) {
+            return;
+        }
+
         if (size == 0 && stateSelected[index] == undefined) {
-            map.attr("opacity", 0.5);
-            label.attr("opacity", 0.5);
-            d3.select(this).attr("opacity", 1);
-            d3.select("#" + index).attr("opacity", 1);
+            d3.select(this).style('stroke', 'yellow').style('stroke-width', 4);
             stateSelected[index] = d.properties.name;
             size++;
-            addState(index);
-            updateTree("remove", "CA");
             updateTree("add", index);
         }
         // stateSelected is not empty && the current clicked state is not highlighted
         else if (size > 0 && stateSelected[index] == undefined) {
-            d3.select(this).attr("opacity", 1);
-            d3.select("#" + index).attr("opacity", 1);
+            d3.select(this).style('stroke', 'yellow').style('stroke-width', 4);
             stateSelected[index] = d.properties.name;
             size++;
-            addState(index);
             updateTree("add", index);
         }
         // stateSelected is not empty && the current clicked state is already highlighted
         else if (size > 1 && stateSelected[index] != undefined) {
-            d3.select(this).attr("opacity", 0.5);
-            d3.select("#" + index).attr("opacity", 0.5);
+            d3.select(this).style('stroke', 'white').style('stroke-width', 0.75);
             stateSelected[index] = undefined;
             size--;
-            removeState(index);
             updateTree("remove", index);
         }
         // user deselected the last state
         else if (size == 1 && stateSelected[index] != undefined){
-            map.attr("opacity", 1);
-            label.attr("opacity", 1);
+            map.style('stroke', 'white').style('stroke-width', 0.75);
             stateSelected[index] = undefined;
             size--;
-            stateNames = ["CA"];
             updateTree("remove", index);
-            updateTree("add", "CA");
         }
     }
 
     // color scale for the legend
     var color = d3.scaleThreshold()
-        .domain([0, 5, 10, 15, 20, 25, 30])
-        .range(d3.schemeGreens[7]);
+        .domain([0, 1, 1.5, 5, 10, 15, 20, 25, 30])
+        .range(d3.schemePurples[9]);
 
     // create and append the map of the US
     var map = svg.selectAll('path')
@@ -181,19 +173,18 @@ function draw(error, data) {
 
             return color(stateCount[index]);
         })
+        .attr("id", function(d){
+            return "map" + stateCode[d.properties.name];
+        })
         .style('stroke', 'white')
         .style('stroke-width', 0.75)
         .on("click", mouseClick);
-        
 
     var label = svg.selectAll("g")
         .data(data[0].features)
         .enter()
         .append("g")
         .append("text")
-        .attr("id", function(d){
-            return stateCode[d.properties.name];
-        })
         .attr("text-anchor","middle")
         .attr('fill', function(d){
 
@@ -203,7 +194,7 @@ function draw(error, data) {
 
             return "white";
         })
-        .attr("font-size", "13px")
+        .attr("font-size", "12px")
         .attr("pointer-events", "none");
 
     // state name of label
@@ -244,26 +235,31 @@ function draw(error, data) {
 
     // handle mouse click
     var reset = function(d) {
-        map.attr("opacity", 1);
-        label.attr("opacity", 1);
+        map.style('stroke', 'white').style('stroke-width', 0.75);
         stateSelected = {};
         size = 0;
         clearAll();
+
+        // initialize map with CA highlighted
+        d3.select("#mapCA").style('stroke', 'yellow').style('stroke-width', 4);
+        stateSelected["CA"] = "California";
+        size++;
+        updateTree("add", "CA");
     }
 
     var g = svg.append("g")
         .attr("transform", function(d) { 
-            return "translate(" + width / 5.7 + "," + (height * 0.03) + ")"; 
+            return "translate(" + width / 4.8 + "," + (height * 0.03) + ")"; 
         })
         .on("click", reset);
 
     g.append("rect")
-        .attr("width", 50)
-        .attr("height", 20);
+        .attr("width", 60)
+        .attr("height", 25);
 
     g.append("text")
-        .attr("x", 8)
-        .attr("y", 15)
+        .attr("x", 9)
+        .attr("y", 17)
         .text("Reset")
         .attr("fill", "white")
         .attr("cursor", "pointer");
@@ -271,11 +267,7 @@ function draw(error, data) {
     var treeBox = d3.select("body").select("#treeBox");
 
     treeBox.append("p")
-        .html("Names of U.S. Astronaut in the Selected State");
-
-    var stateNames = ["CA"];
-
-    treeMap["CA"] = new TreeMap("CA", data[1]);
+        .html("Background Information of U.S. Astronauts in the Selected State");
 
     var clearAll = function(d) {
         d3.selectAll(".tree").remove();
@@ -284,28 +276,6 @@ function draw(error, data) {
     // clear the state from tree map
     var clearStateFromTree = function(name) {
         d3.select("#" + name + ".tree").remove();
-    }
-
-    // indicate whether to remove the preset state data
-    var firstClick = true;
-    var stateIndex = 0;
-
-    // add the state to list of state names
-    var addState = function(name) {
-        if (firstClick) {
-            stateNames = [];
-            firstClick = false;
-        }
-
-        stateNames[stateIndex] = name;
-        stateIndex++;
-    }
-
-    // remove the state from the list of state names
-    var removeState = function(name) {
-        var index = findIndexOfState(name);
-        stateNames.splice(index, 1);
-        stateIndex--;
     }
 
     // update the tree to match current selection
@@ -319,10 +289,16 @@ function draw(error, data) {
         }
     }
 
+    // initialize map with CA highlighted
+    d3.select("#mapCA").style('stroke', 'yellow').style('stroke-width', 4);
+    stateSelected["CA"] = "California";
+    size++;
+    updateTree("add", "CA");
+/*
     // find the index where the state name is at
     var findIndexOfState = function(name) {
         return stateNames.findIndex(function(obj) {
             return obj == name;
         });
-    }
+    }*/
 }

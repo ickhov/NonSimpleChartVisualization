@@ -23,20 +23,20 @@ function TreeMap(stateName, data) {
         height = 1300;
 
     var treeBox = d3.select("body").select("#treeBox");
+
+    var boundingBox = treeBox.node().getBoundingClientRect();
+
+    //  grab the width and height of our containing SVG
+    var width = boundingBox.width - 15;
     
     var newTree = treeBox.append("svg")
-        .attr("width", "900px")
+        .attr("width", width + "px")
         .attr("height", height + "px")
         .attr("class", "tree")
         .attr("id", stateName);
 
     var svg = newTree.append("g")
-        .attr("transform", "translate(" + 150 + ",0)");
-
-    var boundingBox = newTree.node().getBoundingClientRect();
-
-    //  grab the width and height of our containing SVG
-    var width = boundingBox.width;
+        .attr("transform", "translate(" + 115 + ",0)");
 
     var treeData = {}, children = [];
     treeData["name"] = stateName;
@@ -277,17 +277,17 @@ function TreeMap(stateName, data) {
 
     var g = newTree.append("g")
         .attr("transform", function(d) { 
-            return "translate(" + 50 + "," + (root.x0 - 10) + ")"; 
+            return "translate(" + 20 + "," + (root.x0 - 12.5) + ")"; 
         })
         .on("click", reset);
 
     g.append("rect")
-        .attr("width", 50)
-        .attr("height", 20);
+        .attr("width", 60)
+        .attr("height", 25);
 
     g.append("text")
-        .attr("x", 8)
-        .attr("y", 15)
+        .attr("x", 9)
+        .attr("y", 17)
         .text("Reset")
         .attr("fill", "white")
         .attr("cursor", "pointer");
