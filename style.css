@@ -4,42 +4,29 @@ body, html {
   overflow-x: visible;
 }
 
-#view {
-  width: 150%;
-  height: 100%;
-}
-
 #map {
-  width:45%;
-  height:80%;
+  width: 50%;
+  height: 70%;
   float: left;
   background-color: #7bb1e5;
 }
 
-text {
-  font-family: sans-serif;
-}
-
-p {
-  font-family: sans-serif;
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-}
-
 #treeBox {
-  width: 54%;
+  width: 49%;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 100%;
-  float: left;
+  height: 140%;
+  float: right;
   background-color: #424242;
+  margin-right: 1%;
 }
 
 #network {
-  width:40%;
-  height:80%;
+  width: 50%;
+  height: 70%;
+  overflow: scroll;
+  float: left;
+  background-color: antiquewhite;
 }
 
 #myTooltip {
@@ -54,18 +41,45 @@ p {
   pointer-events: none;
 }
 
-.node circle {
+.treeNode circle {
   fill: white;
   stroke: #ff9300;
   stroke-width: 3px;
 }
 
-.node text {
+.treeNode text {
   font: 12px sans-serif;
 }
 
-.link {
+.treeLink {
   fill: none;
   stroke: #919191;
   stroke-width: 2px;
+}
+
+.graphNode circle {
+  stroke: #000000;
+  stroke-width: 1.5px;
+}
+
+.graphLink line {
+  stroke: #999;
+  stroke-opacity: 1;
+}
+
+.graphNode text {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+text {
+  font-family: sans-serif;
+}
+
+p {
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
 }

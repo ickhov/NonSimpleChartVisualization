@@ -1,4 +1,5 @@
 var treeMap = {};
+var networkGraph;
 var svg = d3.select("#map");
 
 var boundingBox = svg.node().getBoundingClientRect();
@@ -98,14 +99,14 @@ function draw(error, data) {
     // D3 Projection
     var projection = d3.geoAlbersUsa()
         .translate([width/2, height/2])    // translate to center of screen
-        .scale([1000]);
+        .scale([800]);
 
     var path = d3.geoPath()
         .projection(projection);
 
     // title for the bubble chart
     svg.append("text")
-        .attr("x", width / 3.5)
+        .attr("x", width / 4.3)
         .attr("y", height / 15)
         .attr("font-size", "20px")
         .attr("fill", "black")
@@ -194,7 +195,7 @@ function draw(error, data) {
 
             return "white";
         })
-        .attr("font-size", "12px")
+        .attr("font-size", "11px")
         .attr("pointer-events", "none");
 
     // state name of label
@@ -249,7 +250,7 @@ function draw(error, data) {
 
     var g = svg.append("g")
         .attr("transform", function(d) { 
-            return "translate(" + width / 4.8 + "," + (height * 0.03) + ")"; 
+            return "translate(" + width / 2.3 + "," + (height * 0.08) + ")"; 
         })
         .on("click", reset);
 
@@ -264,7 +265,7 @@ function draw(error, data) {
         .attr("fill", "white")
         .attr("cursor", "pointer");
 
-    var treeBox = d3.select("body").select("#treeBox");
+    var treeBox = d3.select("#treeBox");
 
     treeBox.append("p")
         .html("Background Information of U.S. Astronauts in the Selected State");
@@ -294,11 +295,6 @@ function draw(error, data) {
     stateSelected["CA"] = "California";
     size++;
     updateTree("add", "CA");
-/*
-    // find the index where the state name is at
-    var findIndexOfState = function(name) {
-        return stateNames.findIndex(function(obj) {
-            return obj == name;
-        });
-    }*/
+
+    drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, data[1]);
 }

@@ -1,6 +1,10 @@
 
-function TreeMap(stateName, data) {
+var selectedNames = {};
 
+function TreeMap(stateName, info) {
+
+    var data = info;
+    
     var height;
 
     // filter data for tree
@@ -22,7 +26,7 @@ function TreeMap(stateName, data) {
     else
         height = 1300;
 
-    var treeBox = d3.select("body").select("#treeBox");
+    var treeBox = d3.select("#treeBox");
 
     var boundingBox = treeBox.node().getBoundingClientRect();
 
@@ -39,7 +43,6 @@ function TreeMap(stateName, data) {
         .attr("transform", "translate(" + 115 + ",0)");
 
     var treeData = {}, children = [];
-    treeData["name"] = stateName;
 
     for (var i = 0; i < data.length; i++)
     {
@@ -72,6 +75,7 @@ function TreeMap(stateName, data) {
         children[i] = map2;
     }
 
+    treeData["name"] = stateName;
     treeData["children"] = children;
 
     // declares a tree layout and assigns the size
@@ -125,12 +129,12 @@ function TreeMap(stateName, data) {
         }
       
         // Update the nodes...
-        var node = svg.selectAll("g.node")
+        var node = svg.selectAll("g.treeNode")
             .data(nodes, keyID);
       
         // Enter any new modes at the parent"s previous position.
         var entering = node.enter().append("g")
-            .attr("class", "node")
+            .attr("class", "treeNode")
             .attr("transform", function(d) {
               return "translate(" + source.y0 + "," + source.x0 + ")";
             })
@@ -143,19 +147,26 @@ function TreeMap(stateName, data) {
             if (d.children) {
                 d.tempChildren = d.children;
                 d.children = null;
+                console.log("hidden " + d.data.name);
+                selectedNames[d.data.name] = undefined;
+                drawNetworkGraph(selectedNames, data);
             } 
             // children is null = chidren is hidden
             // unhide them
             else {
                 d.children = d.tempChildren;
                 d.tempChildren = null;
+                console.log("visible " + d.data.name);
+                selectedNames[d.data.name] = d.data.name;
+                drawNetworkGraph(selectedNames, data);
+                //networkGraph[d.data.name] = new NetworkGraph(d.data.name, info);
             }
             update(d);
         }
       
         // Add Circle for the nodes
         entering.append("circle")
-            .attr("class", "node");
+            .attr("class", "treeNode");
       
         // Add labels for the nodes
         entering.append("text")
@@ -194,7 +205,7 @@ function TreeMap(stateName, data) {
             });
       
         // Update the node attributes and style
-        updating.select("circle.node")
+        updating.select("circle.treeNode")
             .attr("r", 10)
             .style("fill", function(d) {
                 // not null = child hidden
@@ -224,14 +235,14 @@ function TreeMap(stateName, data) {
             .style("fill-opacity", 0);
       
         // Update the links...
-        var link = svg.selectAll("path.link")
+        var link = svg.selectAll("path.treeLink")
             .data(links, keyID);
       
         var init = {x: source.x0, y: source.y0};
 
         // Enter any new links at the parent"s previous position.
         var linkEntering = link.enter().insert("path", "g")
-            .attr("class", "link")
+            .attr("class", "treeLink")
             .attr("d", diagonal(init, init));
       
         // UPDATE
