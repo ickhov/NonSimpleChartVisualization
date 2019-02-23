@@ -155,7 +155,19 @@ function TreeMap(stateName, info) {
             else {
                 d.children = d.tempChildren;
                 d.tempChildren = null;
-                addSelectedNames(d.data.name);
+
+                var name = d.data.name;
+                if(name.length == 2)
+                {
+                    var data = d.children;
+                    for (var a = 0; a < data.length; a++) {
+                        if (data[a].children != null) {
+                            addSelectedNames(data[a].data.name);
+                        }
+                    }
+                } else {
+                    addSelectedNames(name);
+                }
             }
             update(d);
         }

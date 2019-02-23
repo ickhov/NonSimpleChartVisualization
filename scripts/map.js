@@ -159,21 +159,6 @@ function draw(error, data) {
         }
     }
 
-    var clearStateFromNetworkGraph = function(stateName) {
-        var names = astronautsData;
-
-        // filter data for tree
-        names = names.filter(function(d) {
-            return d.State == stateName;
-        })
-
-        for (let name of names) {
-            selectedNames[name.Name] = undefined;
-        }
-        
-        drawNetworkGraph(selectedNames, astronautsData);
-    }
-
     // color scale for the legend
     var color = d3.scaleThreshold()
         .domain([0, 1, 1.5, 5, 10, 15, 20, 25, 30])
@@ -322,11 +307,18 @@ function draw(error, data) {
     updateTree("add", "CA");
 
     /*********************** Network Graph *************************/
-    var graph = d3.select("#network");
+    var graph = d3.select("#titleAndLegend");
+
+    var boundingBox = graph.node().getBoundingClientRect();
+
+    //  grab the width and height of our containing SVG
+    var graphHeight = boundingBox.height;
+    var graphWidth = boundingBox.width;
+
     // title for the network graph
     graph.append("text")
-        .attr("x", width / 8.2)
-        .attr("y", height / 15)
+        .attr("x", graphWidth / 12)
+        .attr("y", graphHeight / 2)
         .attr("font-size", "20px")
         .attr("fill", "black")
         .attr("font-weight", "bold")
@@ -334,8 +326,8 @@ function draw(error, data) {
 
     // hint for the network graph
     graph.append("text")
-        .attr("x", width / 3.3)
-        .attr("y", height / 10)
+        .attr("x", graphWidth / 3.8)
+        .attr("y", graphHeight / 1.3)
         .attr("font-size", "12px")
         .attr("fill", "black")
         .attr("font-weight", "bold")
@@ -343,7 +335,7 @@ function draw(error, data) {
 
     // legend grouping
     var legend = graph.append("g")
-        .attr("transform", "translate(" + (width / 1.18) + "," + (height / 9) + ")");
+        .attr("transform", "translate(" + (graphWidth / 1.16) + "," + (graphHeight / 9) + ")");
     
     legend.append("rect")
         .attr("width", "69px")
@@ -388,6 +380,25 @@ function addSelectedNames(name) {
 }
 
 function removeSelectedNames(name) {
-    selectedNames[name] = undefined;
+    if (name.length == 2) {
+        clearStateFromNetworkGraph(name);
+    } else {
+        selectedNames[name] = undefined;
+        drawNetworkGraph(selectedNames, astronautsData);
+    }
+}
+
+var clearStateFromNetworkGraph = function(stateName) {
+    var names = astronautsData;
+
+    // filter data for tree
+    names = names.filter(function(d) {
+        return d.State == stateName;
+    })
+
+    for (let name of names) {
+        selectedNames[name.Name] = undefined;
+    }
+    
     drawNetworkGraph(selectedNames, astronautsData);
 }

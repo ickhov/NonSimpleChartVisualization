@@ -1,4 +1,5 @@
 
+var radius = 7;
 
 function drawNetworkGraph(astronautName, data) {
 
@@ -18,7 +19,7 @@ function drawNetworkGraph(astronautName, data) {
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.name; }))
-        .force("charge", d3.forceManyBody().strength(-9))
+        .force("charge", d3.forceManyBody().strength(-20))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     var findIndexOfNode = function(name) {
@@ -92,7 +93,8 @@ function drawNetworkGraph(astronautName, data) {
             .attr("y2", function(d) { return d.target.y; });
 
         node.attr("transform", function(d) {
-            return "translate(" + d.x + "," + d.y + ")";
+            return "translate(" + (d.x = Math.max(radius, Math.min(width - radius, d.x))) + "," 
+                + (d.y = Math.max(radius, Math.min(height - radius, d.y))) + ")";
         })
     }
 
