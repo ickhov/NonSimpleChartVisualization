@@ -13,17 +13,17 @@ function TreeMap(stateName, info) {
 
     var length = data.length - 1;
     if (length < 5)
-        height = 300;
+        height = 400;
     else if (length < 10)
-        height = 500;
+        height = 600;
     else if (length < 15)
-        height = 700;
+        height = 800;
     else if (length < 20)
-        height = 900;
+        height = 1000;
     else if (length < 25)
-        height = 1100;
+        height = 1200;
     else
-        height = 1300;
+        height = 1400;
 
     var treeBox = d3.select("#treeBox");
 

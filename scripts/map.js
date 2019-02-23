@@ -322,7 +322,7 @@ function draw(error, data) {
         .attr("font-size", "20px")
         .attr("fill", "black")
         .attr("font-weight", "bold")
-        .text("U.S. Astronauts' Space Missions and Space Walks");
+        .text("U.S. Astronauts' Space Missions and Spacewalks");
 
     // hint for the network graph
     graph.append("text")

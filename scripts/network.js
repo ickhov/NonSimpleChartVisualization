@@ -66,8 +66,8 @@ function drawNetworkGraph(astronautName, data) {
         if (d.group == 0)
         {
             tooltip.html("<strong>" + d.name +
-            "</strong><br /># of Space Walks: " + d.spacewalks +
-            "<br />Space Walks (hr): " + d.spacewalkshr);
+            "</strong><br />" + d.spacewalks + " spacewalks " +
+            "for a total of " + d.spacewalkshr + " hrs");
         } else {
             tooltip.html("<strong>Mission:</strong> " + d.name);
         }
