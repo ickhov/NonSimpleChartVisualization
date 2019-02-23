@@ -97,6 +97,7 @@ function TreeMap(stateName, info) {
     // Collapse the node and all it's children
     function collapse(d) {
         if(d.children) {
+            // this will reset the network graph every time new state is clicked
             removeSelectedNames(d.data.name);
             d.tempChildren = d.children
             d.tempChildren.forEach(collapse)
@@ -277,7 +278,6 @@ function TreeMap(stateName, info) {
     var reset = function(d) {
         // Collapse after the second level
         root.children.forEach(collapse);
-
         update(root);
     }
 

@@ -147,6 +147,7 @@ function draw(error, data) {
             stateSelected[index] = undefined;
             size--;
             updateTree("remove", index);
+            clearStateFromNetworkGraph(index);
         }
         // user deselected the last state
         else if (size == 1 && stateSelected[index] != undefined){
@@ -154,7 +155,23 @@ function draw(error, data) {
             stateSelected[index] = undefined;
             size--;
             updateTree("remove", index);
+            clearStateFromNetworkGraph(index);
         }
+    }
+
+    var clearStateFromNetworkGraph = function(stateName) {
+        var names = astronautsData;
+
+        // filter data for tree
+        names = names.filter(function(d) {
+            return d.State == stateName;
+        })
+
+        for (let name of names) {
+            selectedNames[name.Name] = undefined;
+        }
+        
+        drawNetworkGraph(selectedNames, astronautsData);
     }
 
     // color scale for the legend
@@ -250,7 +267,13 @@ function draw(error, data) {
         size++;
         updateTree("add", "CA");
 
-        drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, astronautsData);
+        selectedNames = {};
+        d3.selectAll(".graphNode").remove();
+        d3.selectAll(".graphLink").remove();
+    }
+
+    var clearAll = function(d) {
+        d3.selectAll(".tree").remove();
     }
 
     var g = svg.append("g")
@@ -273,12 +296,9 @@ function draw(error, data) {
     /*********************** Dendrogram *************************/
     var treeBox = d3.select("#treeBox");
 
+    // title for the tree chart
     treeBox.append("p")
         .html("Background Information of U.S. Astronauts in the Selected State");
-
-    var clearAll = function(d) {
-        d3.selectAll(".tree").remove();
-    }
 
     // clear the state from tree map
     var clearStateFromTree = function(name) {
@@ -302,10 +322,8 @@ function draw(error, data) {
     updateTree("add", "CA");
 
     /*********************** Network Graph *************************/
-    drawNetworkGraph({"Joseph M. Acaba": "Joseph M. Acaba"}, astronautsData);
-
     var graph = d3.select("#network");
-    // title for the bubble chart
+    // title for the network graph
     graph.append("text")
         .attr("x", width / 8.2)
         .attr("y", height / 15)
@@ -313,6 +331,55 @@ function draw(error, data) {
         .attr("fill", "black")
         .attr("font-weight", "bold")
         .text("U.S. Astronauts' Space Missions and Space Walks");
+
+    // hint for the network graph
+    graph.append("text")
+        .attr("x", width / 3.3)
+        .attr("y", height / 10)
+        .attr("font-size", "12px")
+        .attr("fill", "black")
+        .attr("font-weight", "bold")
+        .text("(Select something from the tree diagram)");
+
+    // legend grouping
+    var legend = graph.append("g")
+        .attr("transform", "translate(" + (width / 1.18) + "," + (height / 9) + ")");
+    
+    legend.append("rect")
+        .attr("width", "69px")
+        .attr("height", "40px")
+        .attr("fill", "white");
+    // legend for 1952
+    legend.append("circle")
+        .attr("cx", 8)
+        .attr("cy", 10)
+        .attr("r", 5)
+        .attr("stroke-width", "2px")
+        .attr("stroke", "#ff7e79")
+        .attr("fill", "#9b1a3c");
+
+    legend.append("text")
+        .attr("x", 17)
+        .attr("y", 14)
+        .attr("font-size", "11px")
+        .attr("font-family", "sans-serif")
+        .text("Astronaut");
+
+    // legend for 2007
+    legend.append("circle")
+        .attr("cx", 8)
+        .attr("cy", 28)
+        .attr("r", 5)
+        .attr("stroke-width", "2px")
+        .attr("stroke", "#ff7e79")
+        .attr("fill", "white");
+
+    legend.append("text")
+        .attr("x", 17)
+        .attr("y", 32)
+        .attr("font-size", "11px")
+        .attr("font-family", "sans-serif")
+        .text("Mission");
 }
 
 function addSelectedNames(name) {

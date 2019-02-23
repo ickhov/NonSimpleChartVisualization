@@ -7,7 +7,6 @@ function drawNetworkGraph(astronautName, data) {
 
     var nodes_ = [], nodeIndex = 0;
     var links_ = [], linkIndex = 0;
-    var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var svg = d3.select("#network");
 
@@ -67,7 +66,7 @@ function drawNetworkGraph(astronautName, data) {
         {
             tooltip.html("<strong>" + d.name +
             "</strong><br /># of Space Walks: " + d.spacewalks +
-            "<br />Hours of Space Walks: " + d.spacewalkshr);
+            "<br />Space Walks (hr): " + d.spacewalkshr);
         } else {
             tooltip.html("<strong>Mission:</strong> " + d.name);
         }
@@ -129,8 +128,15 @@ function drawNetworkGraph(astronautName, data) {
         node = node.enter().append("g");
     
         node.append("circle")
-            .attr("r", 5)
-            .attr("fill", function(d) { return color(d.group); })
+            .attr("r", 7)
+            .attr("fill", function(d) { 
+                if (d.group == 0)
+                {
+                    return "#9b1a3c"; 
+                }
+
+                return "white";
+            })
             .on("mouseover", showTooltip)
             .on("mouseleave", hideTooltip)
             .call(d3.drag()
@@ -145,7 +151,7 @@ function drawNetworkGraph(astronautName, data) {
 
                 return "";
             })
-            .attr('x', 6)
+            .attr('x', 8)
             .attr('y', 3)
             .attr("pointer-events", "none");
 
