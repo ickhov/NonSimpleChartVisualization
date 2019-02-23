@@ -12,7 +12,9 @@ function TreeMap(stateName, info) {
     })
 
     var length = data.length - 1;
-    if (length < 5)
+    if (length < 3)
+        height = 200;
+    else if (length < 5)
         height = 400;
     else if (length < 10)
         height = 600;
