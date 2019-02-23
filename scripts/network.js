@@ -32,7 +32,7 @@ function drawNetworkGraph(astronautName, data) {
         // group 0 = name; group 1 = mission
         // add in the node; no duplicates allowed so use dictionary
         if (astronautName[d.Name] != undefined) {
-            nodes_[nodeIndex] = {"name": d.Name, "group": 0, "spacewalks": d.SpaceWalks, "spacewalkshr": d.SpaceWalksHR};
+            nodes_[nodeIndex] = {"name": d.Name, "group": 0, "spacewalks": d.SpaceWalks, "spacewalkshr": d.SpaceWalksHR, "state": d.State};
             nodeIndex++;
 
             // get the links (missions); duplicate allowed so use array with index
@@ -75,7 +75,7 @@ function drawNetworkGraph(astronautName, data) {
             else
                 swhr = "hrs.";
 
-            tooltip.html("<strong>" + d.name +
+            tooltip.html("<strong>" + d.name + " (" + d.state + ")" +
             "</strong> did " + d.spacewalks + " " + sw +
             " for a total of " + d.spacewalkshr + " " + swhr);
         } else {
