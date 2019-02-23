@@ -11,9 +11,9 @@ function TreeMap(stateName, info) {
         return d.State == stateName;
     })
 
-    var length = data.length - 1;
+    var length = data.length;
     if (length < 3)
-        height = 200;
+        height = length * 100;
     else if (length < 5)
         height = 400;
     else if (length < 10)
