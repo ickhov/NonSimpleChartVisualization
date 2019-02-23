@@ -36,7 +36,6 @@ function drawNetworkGraph(astronautName, data) {
             nodeIndex++;
 
             // get the links (missions); duplicate allowed so use array with index
-            d.Missions = d.Missions.replace(/\s+/g, '');
             var missions = d.Missions.split(",");
     
             for (let mission of missions) {
