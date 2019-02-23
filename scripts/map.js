@@ -283,7 +283,7 @@ function draw(error, data) {
 
     // title for the tree chart
     treeBox.append("p")
-        .html("Background Information of U.S. Astronauts in the Selected State");
+        .html("Background Information of U.S. Astronauts in the Selected States");
 
     // clear the state from tree map
     var clearStateFromTree = function(name) {
