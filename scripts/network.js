@@ -19,7 +19,7 @@ function drawNetworkGraph(astronautName, data) {
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.name; }))
-        .force("charge", d3.forceManyBody().strength(-20))
+        .force("charge", d3.forceManyBody().strength(-10))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     var findIndexOfNode = function(name) {
